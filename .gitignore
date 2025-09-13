@@ -68,3 +68,4 @@ node_modules/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+.fake
