@@ -112,3 +112,21 @@ code {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
     text-align: start;
 }
+
+.keypad-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-width: 300px; /* Adjust as needed */
+    margin: 20px auto; /* Center the keypad */
+}
+
+.keypad-button {
+    width: 80px; /* Adjust as needed */
+    height: 80px; /* Adjust as needed */
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* Make buttons circular */
+}
