@@ -130,3 +130,9 @@ code {
     align-items: center;
     border-radius: 50%; /* Make buttons circular */
 }
+
+.pressed-keys, .output-word {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 300px; /* Align with keypad width for consistency */
+}
