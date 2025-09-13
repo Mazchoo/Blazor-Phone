@@ -89,5 +89,89 @@ namespace BlazorPhone.Tests
             Assert.Equal(7, nrCharactersIgnored);
             Assert.Equal("123 * *123 2", pressedKeys.ToString());
         }
+
+        [Fact]
+        public void ParseCharAndAmountToLetter_ShouldHandleInvalidCharacter()
+        {
+            // Arrange
+            char c = '#';
+            int nrTimesPressed = 1;
+
+            // Act
+            char parsedChar = PhonePadParser.ParseCharAndAmountToLetter(c, nrTimesPressed);
+
+            // Assert
+            Assert.Equal(' ', parsedChar);
+        }
+
+        [Fact]
+        public void ParseCharAndAmountToLetter_ShouldHandleCharacterPressedZeroTimes()
+        {
+            // Arrange
+            char c = '1';
+            int nrTimesPressed = 0;
+
+            // Act
+            char parsedChar = PhonePadParser.ParseCharAndAmountToLetter(c, nrTimesPressed);
+
+            // Assert
+            Assert.Equal(' ', parsedChar);
+        }
+
+        [Fact]
+        public void ParseCharAndAmountToLetter_ShouldReturnExpectedCharacterPressedOnce()
+        {
+            // Arrange
+            char c = '2';
+            int nrTimesPressed = 1;
+
+            // Act
+            char parsedChar = PhonePadParser.ParseCharAndAmountToLetter(c, nrTimesPressed);
+
+            // Assert
+            Assert.Equal('A', parsedChar);
+        }
+
+        [Fact]
+        public void ParseCharAndAmountToLetter_ShouldReturnExpectedCharacterPressedTwice()
+        {
+            // Arrange
+            char c = '3';
+            int nrTimesPressed = 2;
+
+            // Act
+            char parsedChar = PhonePadParser.ParseCharAndAmountToLetter(c, nrTimesPressed);
+
+            // Assert
+            Assert.Equal('E', parsedChar);
+        }
+
+        [Fact]
+        public void ParseCharAndAmountToLetter_ShouldReturnCycleWhenPressedManyTimes()
+        {
+            // Arrange
+            char c = '9';
+            int nrTimesPressed = 7;
+
+            // Act
+            char parsedChar = PhonePadParser.ParseCharAndAmountToLetter(c, nrTimesPressed);
+
+            // Assert
+            Assert.Equal('Y', parsedChar);
+        }
+
+        [Fact]
+        public void ParseCharAndAmountToLetter_ShouldReturnSpaceOnZero()
+        {
+            // Arrange
+            char c = '0';
+            int nrTimesPressed = 1;
+
+            // Act
+            char parsedChar = PhonePadParser.ParseCharAndAmountToLetter(c, nrTimesPressed);
+
+            // Assert
+            Assert.Equal(' ', parsedChar);
+        }
     }
 }

@@ -4,6 +4,12 @@ namespace BlazorPhone.Pages
 {
     public class PhonePadParser
     {
+        public static ReadOnlySpan<string> MKeyPadMapping => new[]
+        {
+            " ", "&'()", "ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ"
+        };
+
+
         /// <summary>
         /// Effectively removes all backspace characters, characters preceding a backspace
         /// and invalid characters from the given StringBuilder in place.
@@ -40,6 +46,12 @@ namespace BlazorPhone.Pages
                 }
             }
             return nrCharactersIgnored;
+        }
+
+        static protected char ParseCharAndAmountToLetter(char c, int nrTimesPressed)  {
+            if (!char.IsDigit(c) || nrTimesPressed < 1) return ' ';  // Not expected
+            String lookupString = MKeyPadMapping[c - '0'];
+            return lookupString[(nrTimesPressed - 1) % lookupString.Length];
         }
     }
 }
