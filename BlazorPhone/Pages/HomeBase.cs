@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using System.Text;
 
 namespace BlazorPhone.Pages
 {
@@ -12,12 +13,12 @@ namespace BlazorPhone.Pages
             "*", "0", "#"
         };
 
-        protected string mPressedKeys { get; set; } = string.Empty;
-        protected string mOutputWord { get; set; } = string.Empty;
+        protected StringBuilder mPressedKeys { get; set; } = new StringBuilder();
+        protected StringBuilder mOutputWord { get; set; } = new StringBuilder();
 
         protected void HandleClick(string key)
         {
-            mPressedKeys += key;
+            mPressedKeys.Append(key);
             StateHasChanged();
             Console.WriteLine($"Button {key} clicked");
         }
