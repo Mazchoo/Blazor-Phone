@@ -40,6 +40,22 @@ ScaffoldingReadMe.txt
 ~$*
 *~
 CodeCoverage/
+*.log
+*.bak
+*.sqlite
+*.db
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Blazor/ASP.NET Core specific
+appsettings.json
+appsettings.*.json
+Properties/launchSettings.json
+wwwroot/dist/
+node_modules/
 
 # MSBuild Binary and Structured Log
 *.binlog
