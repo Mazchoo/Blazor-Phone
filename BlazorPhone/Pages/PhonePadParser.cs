@@ -99,10 +99,11 @@ namespace BlazorPhone.Pages
                 char currentChar = pressedKeys[i];
 
                 if (currentChar != prevChar && prevChar != ' ') {
-                    // Push to output
+                    // Push a character to output
                     pressedKeys[nrParsedChars++] = ParseCharAndAmountToLetter(prevChar, nrTimesPressed);
                     nrTimesPressed = 0;
                 } else if (currentChar == ' ' && currentChar == prevChar && i != ignoredAtStart) {
+                    // Push a space to output
                     pressedKeys[nrParsedChars++] = ' ';
                 }
 
