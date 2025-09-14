@@ -14,6 +14,7 @@ namespace BlazorPhone.Pages
         /// Implementation Detail - edits pressedKeys in place
         /// Effectively removes all backspace characters, characters preceding a backspace
         /// and invalid characters from the given StringBuilder in place.
+        /// Zeros are converted to spaces
         /// e.g.
         /// "12*" => 2, ignore first two characters in "121"
         /// "AB1" => 2, ignore first two characters in "AB1"
@@ -29,7 +30,10 @@ namespace BlazorPhone.Pages
             for (int i = pressedKeys.Length - 1; i >= 0; i--)
             {
                 char pressedChar = pressedKeys[i];
-                if (currentEraseAmount > 0 && previousChar != pressedChar && previousChar != '*') {
+                if (pressedChar == '0') pressedChar = ' ';
+
+                if (currentEraseAmount > 0 && previousChar != pressedChar && previousChar != '*')
+                {
                     currentEraseAmount -= 1; // Stop current erase
                 }
 

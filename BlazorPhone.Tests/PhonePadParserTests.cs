@@ -24,28 +24,28 @@ namespace BlazorPhone.Tests
         public void MoveValidCharactersToEndOfString_ShouldIgnoreNothingWithValidCharacters()
         {
             // Arrange
-            StringBuilder pressedKeys = new("12345 67890");
+            StringBuilder pressedKeys = new("12345 6789");
 
             // Act
             int nrCharactersIgnored = PhonePadParser.MoveValidCharactersToEndOfString(pressedKeys);
 
             // Assert
             Assert.Equal(0, nrCharactersIgnored);
-            Assert.Equal("12345 67890", pressedKeys.ToString());
+            Assert.Equal("12345 6789", pressedKeys.ToString());
         }
 
         [Fact]
         public void MoveValidCharactersToEndOfString_ShouldIgnoreInvalidCharacters()
         {
             // Arrange
-            StringBuilder pressedKeys = new("12345 AB 67890#");
+            StringBuilder pressedKeys = new("12345 AB 6789#");
 
             // Act
             int nrCharactersIgnored = PhonePadParser.MoveValidCharactersToEndOfString(pressedKeys);
 
             // Assert
             Assert.Equal(3, nrCharactersIgnored);
-            Assert.Equal("12312345  67890", pressedKeys.ToString());
+            Assert.Equal("12312345  6789", pressedKeys.ToString());
         }
 
         [Fact]
@@ -303,6 +303,19 @@ namespace BlazorPhone.Tests
 
             // Assert
             Assert.Equal(" B  ", pressedKeys.ToString());  // Probably Failing test
+        }
+
+        [Fact]
+        public void ParsePressedKeysToLetters_ZerosConvertToSpaces()
+        {
+            // Arrange
+            StringBuilder pressedKeys = new("0200");
+
+            // Act
+            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+
+            // Assert
+            Assert.Equal("A ", pressedKeys.ToString());  // Probably Failing test
         }
     }
 }

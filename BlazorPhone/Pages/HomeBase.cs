@@ -19,8 +19,13 @@ namespace BlazorPhone.Pages
         protected void HandleClick(string key)
         {
             mPressedKeys.Append(key);
+
+            if (key == "#") {
+                mOutputWord = PhonePadParser.ParsePressedKeysToLetters(mPressedKeys);
+                mPressedKeys = new StringBuilder();
+            }
+
             StateHasChanged();
-            Console.WriteLine($"Button {key} clicked");
         }
     }
 }
