@@ -22,7 +22,8 @@ namespace BlazorPhone.Pages
             mPressedKeys.Append(c);
 
             if (c == '#') {
-                mOutputWord = PhonePadParser.ParsePressedKeysToLetters(mPressedKeys);
+                PhonePadParser.ParsePressedKeysToLetters(mPressedKeys);
+                mOutputWord = mPressedKeys;
                 mPressedKeys = new StringBuilder();
             }
 

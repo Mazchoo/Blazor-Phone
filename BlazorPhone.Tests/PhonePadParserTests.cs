@@ -182,7 +182,7 @@ namespace BlazorPhone.Tests
             StringBuilder pressedKeys = new("222 2 22");
 
             // Act
-            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+            PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
 
             // Assert
             Assert.Equal("CAB", pressedKeys.ToString());
@@ -195,7 +195,7 @@ namespace BlazorPhone.Tests
             StringBuilder pressedKeys = new(" 222 2 22#");
 
             // Act
-            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+            PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
 
             // Assert
             Assert.Equal("CAB", pressedKeys.ToString());
@@ -208,7 +208,7 @@ namespace BlazorPhone.Tests
             StringBuilder pressedKeys = new("4433555 555666#");
 
             // Act
-            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+            PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
 
             // Assert
             Assert.Equal("HELLO", pressedKeys.ToString());
@@ -221,7 +221,7 @@ namespace BlazorPhone.Tests
             StringBuilder pressedKeys = new("44K33E555B 55A5666B#");
 
             // Act
-            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+            PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
 
             // Assert
             Assert.Equal("HELLO", pressedKeys.ToString());
@@ -234,7 +234,7 @@ namespace BlazorPhone.Tests
             StringBuilder pressedKeys = new("227*#");
 
             // Act
-            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+            PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
 
             // Assert
             Assert.Equal("B", pressedKeys.ToString());
@@ -247,7 +247,7 @@ namespace BlazorPhone.Tests
             StringBuilder pressedKeys = new("2277**#");
 
             // Act
-            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+            PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
 
             // Assert
             Assert.Equal("", pressedKeys.ToString());
@@ -260,7 +260,7 @@ namespace BlazorPhone.Tests
             StringBuilder pressedKeys = new("*22 2277*7**#");
 
             // Act
-            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+            PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
 
             // Assert
             Assert.Equal("B", pressedKeys.ToString());
@@ -273,7 +273,7 @@ namespace BlazorPhone.Tests
             StringBuilder pressedKeys = new("8 88777444666*664#");
 
             // Act
-            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+            PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
 
             // Assert
             Assert.Equal("TURING", pressedKeys.ToString());  // Probably Failing test
@@ -286,7 +286,7 @@ namespace BlazorPhone.Tests
             StringBuilder pressedKeys = new("66666");
 
             // Act
-            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+            PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
 
             // Assert
             Assert.Equal("N", pressedKeys.ToString());  // Probably Failing test
@@ -299,7 +299,7 @@ namespace BlazorPhone.Tests
             StringBuilder pressedKeys = new("  22   ");
 
             // Act
-            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+            PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
 
             // Assert
             Assert.Equal(" B  ", pressedKeys.ToString());  // Probably Failing test
@@ -312,7 +312,7 @@ namespace BlazorPhone.Tests
             StringBuilder pressedKeys = new("0200");
 
             // Act
-            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+            PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
 
             // Assert
             Assert.Equal("A ", pressedKeys.ToString());  // Probably Failing test

@@ -80,11 +80,16 @@ namespace BlazorPhone.Pages
 
         /// <summary>
         /// Edits pressedKeys in place
-        /// Returns a parsed message of letters from numerical keys that were pressed
+        /// Turns pressedKeys into letters from numerical phone keys according to MKeyPadMapping
+        /// * Will delete the last complete instuction
+        /// 0 Must be occur in sequence n + 1 times to get n spaces
         /// e.g.
+        /// "22202022" -> "CAB"
+        /// "222*02022" -> "AB"
+        /// "200" -> "A "
         /// </summary>
         /// <returns>The transformed input showing the parsed message</returns>
-        static public StringBuilder ParsePressedKeysToLetters(StringBuilder pressedKeys)  {
+        static public void ParsePressedKeysToLetters(StringBuilder pressedKeys)  {
             int ignoredAtStart = MoveValidCharactersToEndOfString(pressedKeys);
             int nrParsedChars = 0;
 
@@ -112,7 +117,6 @@ namespace BlazorPhone.Pages
             }
 
             pressedKeys.Length = nrParsedChars;
-            return pressedKeys;
         }
     }
 }
