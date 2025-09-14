@@ -88,7 +88,6 @@ namespace BlazorPhone.Pages
         /// "222*02022" -> "AB"
         /// "200" -> "A "
         /// </summary>
-        /// <returns>The transformed input showing the parsed message</returns>
         static public void ParsePressedKeysToLetters(StringBuilder pressedKeys)  {
             int ignoredAtStart = MoveValidCharactersToEndOfString(pressedKeys);
             int nrParsedChars = 0;
