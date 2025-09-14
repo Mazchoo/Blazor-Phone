@@ -21,4 +21,4 @@ jobs:
     - name: Build
       run: dotnet build BlazorPhone/BlazorPhone.sln --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal BlazorPhone.Tests/BlazorPhone.Tests.csproj
+      run: dotnet test BlazorPhone.Tests/BlazorPhone.Tests.csproj --logger "console;verbosity=detailed"
