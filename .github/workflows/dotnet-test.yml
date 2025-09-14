@@ -17,8 +17,8 @@ jobs:
       with:
         dotnet-version: 9.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore BlazorPhone/BlazorPhone.sln
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build BlazorPhone/BlazorPhone.sln --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal BlazorPhone.Tests/BlazorPhone.Tests.csproj
