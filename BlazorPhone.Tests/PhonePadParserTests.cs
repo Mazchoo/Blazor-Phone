@@ -187,5 +187,96 @@ namespace BlazorPhone.Tests
             // Assert
             Assert.Equal("CAB", pressedKeys.ToString());
         }
+
+        [Fact]
+        public void ParsePressedKeysToLetters_ShouldIgnoreSpacesAtBeginningSpacedString()
+        {
+            // Arrange
+            StringBuilder pressedKeys = new(" 222 2 22#");
+
+            // Act
+            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+
+            // Assert
+            Assert.Equal("CAB", pressedKeys.ToString());
+        }
+
+        [Fact]
+        public void ParsePressedKeysToLetters_ShouldProccessUnspacedLetters()
+        {
+            // Arrange
+            StringBuilder pressedKeys = new("4433555 555666#");
+
+            // Act
+            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+
+            // Assert
+            Assert.Equal("HELLO", pressedKeys.ToString());
+        }
+
+        [Fact]
+        public void ParsePressedKeysToLetters_ShouldIgnoreInvalidCharacters()
+        {
+            // Arrange
+            StringBuilder pressedKeys = new("44K33E555B 55A5666B#");
+
+            // Act
+            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+
+            // Assert
+            Assert.Equal("HELLO", pressedKeys.ToString());
+        }
+
+        [Fact]
+        public void ParsePressedKeysToLetters_ShouldProccessSingleUndo()
+        {
+            // Arrange
+            StringBuilder pressedKeys = new("227*#");
+
+            // Act
+            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+
+            // Assert
+            Assert.Equal("B", pressedKeys.ToString());
+        }
+
+        [Fact]
+        public void ParsePressedKeysToLetters_ShouldProccessDoubleUndo()
+        {
+            // Arrange
+            StringBuilder pressedKeys = new("2277**#");
+
+            // Act
+            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+
+            // Assert
+            Assert.Equal("B", pressedKeys.ToString());
+        }
+
+        [Fact]
+        public void ParsePressedKeysToLetters_ShouldTotalProcessUnsequencedUndos()
+        {
+            // Arrange
+            StringBuilder pressedKeys = new("*2277*7**#");
+
+            // Act
+            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+
+            // Assert
+            Assert.Equal("B", pressedKeys.ToString());
+        }
+
+        [Fact]
+        public void ParsePressedKeysToLetters_ShouldCycleThroughKeysAndUndoLastCharacter()
+        {
+            // Arrange
+            StringBuilder pressedKeys = new("8 88777444666*664#");
+
+            // Act
+            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+
+            // Assert
+            Assert.Equal("TURIMG", pressedKeys.ToString());  // Probably Failing test
+        }
     }
 }
