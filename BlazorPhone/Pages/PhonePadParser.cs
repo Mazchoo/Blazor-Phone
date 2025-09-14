@@ -18,32 +18,43 @@ namespace BlazorPhone.Pages
         /// "12*" => 2, ignore first two characters in "121"
         /// "AB1" => 2, ignore first two characters in "AB1"
         /// "***" => 3, ignore everything in "***"
+        /// "77*4" => 3, ignore 77 and * in "77*4"
         /// </summary>
         /// <returns>The number of characters to ignore at the start of the stringBuilder</returns>
         static protected int MoveValidCharactersToEndOfString(StringBuilder pressedKeys) {
             int nrCharactersIgnored = 0;
             int currentEraseAmount = 0;
+            char previousChar = ' ';
 
             for (int i = pressedKeys.Length - 1; i >= 0; i--)
             {
                 char pressedChar = pressedKeys[i];
+                if (currentEraseAmount > 0 && previousChar != pressedChar && previousChar != '*') {
+                    currentEraseAmount -= 1; // Stop current erase
+                }
+
                 if (pressedChar == '*') {
                     currentEraseAmount += 1;
-                    nrCharactersIgnored += 1;  // Both * and the next character ignored
+                    nrCharactersIgnored += 1;  // * is ignored
+                    previousChar = pressedChar;
                     continue;
                 }
 
                 if (currentEraseAmount > 0) {
-                    currentEraseAmount -= 1;
+                    // If delete not stopped yet ignore current character
+                    previousChar = pressedChar;
                     nrCharactersIgnored += 1;
                     continue;
                 }
 
+                // Append character to end of buffer
                 if (char.IsDigit(pressedChar) || pressedChar == ' ') {
                     pressedKeys[i + nrCharactersIgnored] = pressedChar;
                 } else {
                     nrCharactersIgnored += 1;
                 }
+
+                previousChar = pressedChar;
             }
             return nrCharactersIgnored;
         }

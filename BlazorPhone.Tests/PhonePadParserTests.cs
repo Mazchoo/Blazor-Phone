@@ -241,7 +241,7 @@ namespace BlazorPhone.Tests
         }
 
         [Fact]
-        public void ParsePressedKeysToLetters_ShouldProccessDoubleUndo()
+        public void ParsePressedKeysToLetters_ShouldProccessDoubleDelete()
         {
             // Arrange
             StringBuilder pressedKeys = new("2277**#");
@@ -250,14 +250,14 @@ namespace BlazorPhone.Tests
             StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
 
             // Assert
-            Assert.Equal("B", pressedKeys.ToString());
+            Assert.Equal("", pressedKeys.ToString());
         }
 
         [Fact]
-        public void ParsePressedKeysToLetters_ShouldTotalProcessUnsequencedUndos()
+        public void ParsePressedKeysToLetters_ShouldTotalProcessUnsequencedDeletes()
         {
             // Arrange
-            StringBuilder pressedKeys = new("*2277*7**#");
+            StringBuilder pressedKeys = new("*22 2277*7**#");
 
             // Act
             StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
@@ -276,7 +276,7 @@ namespace BlazorPhone.Tests
             StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
 
             // Assert
-            Assert.Equal("TURIMG", pressedKeys.ToString());  // Probably Failing test
+            Assert.Equal("TURING", pressedKeys.ToString());  // Probably Failing test
         }
     }
 }
