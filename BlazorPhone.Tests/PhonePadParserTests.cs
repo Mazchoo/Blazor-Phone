@@ -173,5 +173,19 @@ namespace BlazorPhone.Tests
             // Assert
             Assert.Equal(' ', parsedChar);
         }
+
+
+        [Fact]
+        public void ParsePressedKeysToLetters_ShouldParsedSpacedString()
+        {
+            // Arrange
+            StringBuilder pressedKeys = new("222 2 22");
+
+            // Act
+            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+
+            // Assert
+            Assert.Equal("CAB", pressedKeys.ToString());
+        }
     }
 }
