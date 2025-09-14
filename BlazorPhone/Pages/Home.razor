@@ -4,7 +4,10 @@
 <div class="keypad-grid">
     @foreach (var key in mKeys)
     {
-        <button class="btn btn-primary keypad-button" @onclick="() => HandleClick(key.ToString())">@key</button>
+        <button class="btn btn-primary keypad-button" @onclick="() => HandleClick(key.ToString())">
+            <span class="key-main-char">@key[0]</span>
+            <span class="key-sub-chars"><sub>@key.Substring(1).Trim()</sub></span>
+        </button>
     }
 </div>
 

@@ -122,13 +122,26 @@ code {
 }
 
 .keypad-button {
-    width: 80px; /* Adjust as needed */
-    height: 80px; /* Adjust as needed */
+    width: 100px; /* Increased width for 8 characters */
+    height: 100px; /* Increased height */
     font-size: 1.5em;
     display: flex;
+    flex-direction: column; /* Stack main and sub characters */
     justify-content: center;
     align-items: center;
-    border-radius: 50%; /* Make buttons circular */
+    border-radius: 10px; /* Slightly rounded corners for rectangular buttons */
+    padding: 5px;
+    line-height: 1; /* Adjust line height to prevent extra spacing */
+}
+
+.key-main-char {
+    font-size: 2em; /* Larger font for the main character */
+    font-weight: bold;
+}
+
+.key-sub-chars {
+    font-size: 0.6em; /* Smaller font for subscript characters */
+    line-height: 1; /* Adjust line height */
 }
 
 .pressed-keys, .output-word {
