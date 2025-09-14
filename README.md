@@ -1,3 +1,6 @@
+<img width="50%" alt="image" src="https://github.com/user-attachments/assets/5a757583-d8b0-4c0d-ba6b-27f6b442cf4f" />
+
+
 ### Installation
 
 1. Download dotnet (tested with version 9.0) from https://dotnet.microsoft.com/en-us/download/dotnet/9.0.
