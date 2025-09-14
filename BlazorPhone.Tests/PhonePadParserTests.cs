@@ -267,7 +267,7 @@ namespace BlazorPhone.Tests
         }
 
         [Fact]
-        public void ParsePressedKeysToLetters_ShouldCycleThroughKeysAndUndoLastCharacter()
+        public void ParsePressedKeysToLetters_ShouldDeletePreviousSequence()
         {
             // Arrange
             StringBuilder pressedKeys = new("8 88777444666*664#");
@@ -277,6 +277,32 @@ namespace BlazorPhone.Tests
 
             // Assert
             Assert.Equal("TURING", pressedKeys.ToString());  // Probably Failing test
+        }
+
+        [Fact]
+        public void ParsePressedKeysToLetters_ShouldCycleThroughKeys()
+        {
+            // Arrange
+            StringBuilder pressedKeys = new("66666");
+
+            // Act
+            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+
+            // Assert
+            Assert.Equal("N", pressedKeys.ToString());  // Probably Failing test
+        }
+
+        [Fact]
+        public void ParsePressedKeysToLetters_ShouldConvertDoubleSpaceToSpace()
+        {
+            // Arrange
+            StringBuilder pressedKeys = new("  22   ");
+
+            // Act
+            StringBuilder result = PhonePadParser.ParsePressedKeysToLetters(pressedKeys);
+
+            // Assert
+            Assert.Equal(" B  ", pressedKeys.ToString());  // Probably Failing test
         }
     }
 }

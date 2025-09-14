@@ -79,30 +79,32 @@ namespace BlazorPhone.Pages
         /// Returns a parsed message of letters from numerical keys that were pressed
         /// e.g.
         /// </summary>
-        /// <returns>The transformed input showing the message</returns>
+        /// <returns>The transformed input showing the parsed message</returns>
         static public StringBuilder ParsePressedKeysToLetters(StringBuilder pressedKeys)  {
             int ignoredAtStart = MoveValidCharactersToEndOfString(pressedKeys);
             int nrParsedChars = 0;
 
-            char currentChar = ' ';
+            char prevChar = ' ';
             int nrTimesPressed = 0;
             for (int i = ignoredAtStart; i < pressedKeys.Length; i++) {
-                char nextChar = pressedKeys[i];
+                char currentChar = pressedKeys[i];
 
-                if (nextChar != currentChar && currentChar != ' ') {
+                if (currentChar != prevChar && prevChar != ' ') {
                     // Push to output
-                    pressedKeys[nrParsedChars++] = ParseCharAndAmountToLetter(currentChar, nrTimesPressed);
+                    pressedKeys[nrParsedChars++] = ParseCharAndAmountToLetter(prevChar, nrTimesPressed);
                     nrTimesPressed = 0;
+                } else if (currentChar == ' ' && currentChar == prevChar && i != ignoredAtStart) {
+                    pressedKeys[nrParsedChars++] = ' ';
                 }
 
-                if (nextChar != ' ') nrTimesPressed++;
-                currentChar = nextChar;
+                if (currentChar != ' ') nrTimesPressed++;
+                prevChar = currentChar;
             }
 
-            if (currentChar != ' ')
+            if (prevChar != ' ')
             {
                 // Push last char to output
-                pressedKeys[nrParsedChars++] = ParseCharAndAmountToLetter(currentChar, nrTimesPressed);
+                pressedKeys[nrParsedChars++] = ParseCharAndAmountToLetter(prevChar, nrTimesPressed);
             }
 
             pressedKeys.Length = nrParsedChars;
