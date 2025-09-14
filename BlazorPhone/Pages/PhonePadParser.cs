@@ -30,7 +30,7 @@ namespace BlazorPhone.Pages
             for (int i = pressedKeys.Length - 1; i >= 0; i--)
             {
                 char pressedChar = pressedKeys[i];
-                if (pressedChar == '0') pressedChar = ' ';
+                if (pressedChar == '0') pressedChar = ' '; // Zeros convert to spaces
 
                 if (currentEraseAmount > 0 && previousChar != pressedChar && previousChar != '*')
                 {
